@@ -15,7 +15,7 @@ export const handler = middy(
     const todos = getAllTodos(userId)
 
     return {
-      statusCode: 201,
+      statusCode: 200,
       body: JSON.stringify({
         items: todos
       })
