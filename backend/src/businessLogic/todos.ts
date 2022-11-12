@@ -1,10 +1,10 @@
 import TodosAccess  from '../dataLayer/TodosAcess'
-import AttachmentUtils  from '../helpers/AttachmentUtils'
+import AttachmentUtils  from '../helpers/attachmentUtils'
 import { TodoItem } from '../models/TodoItem'
 import { CreateTodoRequest } from '../requests/CreateTodoRequest'
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
 import { createLogger } from '../utils/logger'
-import * as createError from 'http-errors'
+// import * as createError from 'http-errors'
 
 const uuidv4 = require('uuid/v4');
 // TODO: Implement businessLogic
@@ -41,4 +41,8 @@ export async function updateTodoItem(todoId: string, userId: string, updateItem:
 
 export async function deleteTodoItem(todoId: string, userId: string): Promise<void>{
     return await toDoAccess.deleteTodo(todoId, userId)
+}
+
+export async function createAttachmentPresignedUrl(todoId: string): Promise<string>{
+    return attachment.generateUploadUrl(todoId);
 }
