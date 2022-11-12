@@ -18,7 +18,7 @@ export async function getAllTodos(userId: string): Promise<TodoItem[]>{
 }
 
 export async function createTodoItem(userId: string, todoItem: CreateTodoRequest): Promise<TodoItem>{
-    logger.info("creating new item")
+    logger.info("creating new item...")
     const todoId =  uuidv4();
     const timeStamp = new Date().toISOString()
     const url = attachment.getAttachmentUrl(todoId)
@@ -36,13 +36,16 @@ export async function createTodoItem(userId: string, todoItem: CreateTodoRequest
 }
 
 export async function updateTodoItem(todoId: string, userId: string, updateItem: UpdateTodoRequest): Promise<void>{
+    logger.info("updating todo items...")
     return await toDoAccess.updateTodo(todoId, userId, updateItem)
 }
 
 export async function deleteTodoItem(todoId: string, userId: string): Promise<void>{
+    logger.info("deleting to do items...")
     return await toDoAccess.deleteTodo(todoId, userId)
 }
 
 export async function createAttachmentPresignedUrl(todoId: string): Promise<string>{
+    logger.info("generating upload url...")
     return attachment.generateUploadUrl(todoId);
 }
