@@ -49,14 +49,14 @@ custom:
   documentation:
     api:
       info:
-        version: v1.0.0
-        title: Todo Api
+        version: '1.0.0'
+        title: Todo-Api
         description: Serverless application for creating todos
     models:
       - name: CreateTodo
-        contentType: application/json
+        contentType: 'application/json'
         schema: ${file(models/create-todo-model.json)}
-      - name: UpdateTodo
+      - name: 'UpdateTodo'
         contentType: application/json
         schema: ${file(models/update-todo-model.json)}
 
@@ -179,6 +179,10 @@ functions:
           authorizer: Auth
     iamRoleStatementsName: ${self:provider.environment.PROJECT_NAME}-generate-url-role-${self:provider.stage}
     iamRoleStatements:
+      - Effect: Allow
+        Action: 
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
       - Effect: Allow
         Action:
           - s3:*
