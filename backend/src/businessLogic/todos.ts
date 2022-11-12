@@ -34,3 +34,7 @@ export async function createTodoItem(userId: string, todoItem: CreateTodoRequest
     
     return await toDoAccess.createTodo(newTodo);
 }
+
+export async function updateTodoItem(todoId: string, userId: string, updateItem: UpdateTodoRequest): Promise<void>{
+    return await toDoAccess.updateTodo(todoId, userId, updateItem)
+}
